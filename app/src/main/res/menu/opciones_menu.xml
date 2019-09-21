@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/opcReiniciarPartida"
+        android:title="@string/txtReiniciarPartida"
+        android:icon="@drawable/restart"
+        android:orderInCategory="5"
+        app:showAsAction="ifRoom|withText"
+        />
+    <item
+        android:id="@+id/opcGuardarPartida"
+        android:title="@string/txtOpcionGuardar"
+        android:icon="@android:drawable/ic_menu_save"
+        android:orderInCategory="10"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/opcRecuperarPartida"
+        android:title="@string/txtOpcionRecuperar"
+        android:icon="@android:drawable/ic_menu_revert"
+        android:orderInCategory="15"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/opcMejoresResultados"
+        android:title="@string/txtOpcionMejoresResultados"
+        android:orderInCategory="20"
+        />
+    <item
+        android:id="@+id/opcAjustes"
+        android:title="@string/preferencesText"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="100"
+        />
+    <item
+        android:id="@+id/opcAcercaDe"
+        android:title="@string/aboutText"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:orderInCategory="200"
+        />
+
+</menu>

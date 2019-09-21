@@ -1,0 +1,14 @@
+<resources>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="SCeltaRadioButton" >
+        <item name="android:layout_width">@dimen/button_side</item>
+        <item name="android:layout_height">@dimen/button_side</item>
+        <item name="android:onClick">fichaPulsada</item>
+    </style>
+
+</resources>

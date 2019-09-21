@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    tools:ignore="RtlHardcoded">
+
+    <TextView
+        android:id="@+id/barraEstado"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_status_bar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Row 0 -->
+        <RadioButton
+            android:id="@+id/p03"
+            style="@style/SCeltaRadioButton"
+            android:layout_toStartOf="@+id/p14" />
+
+        <RadioButton
+            android:id="@+id/p02"
+            style="@style/SCeltaRadioButton"
+            android:layout_toLeftOf="@id/p03" />
+
+        <RadioButton
+            android:id="@+id/p04"
+            style="@style/SCeltaRadioButton"
+            android:layout_toRightOf="@id/p03" />
+
+        <!-- Row 1 -->
+        <RadioButton
+            android:id="@+id/p13"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@+id/p03"
+            android:layout_centerHorizontal="true" />
+
+        <RadioButton
+            android:id="@+id/p12"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p02"
+            android:layout_toLeftOf="@id/p13" />
+
+        <RadioButton
+            android:id="@+id/p14"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p04"
+            android:layout_toRightOf="@id/p13" />
+
+        <!-- Row 2 -->
+        <RadioButton
+            android:id="@+id/p23"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p13"
+            android:layout_centerHorizontal="true" />
+
+        <RadioButton
+            android:id="@+id/p22"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p12"
+            android:layout_toLeftOf="@id/p23" />
+
+        <RadioButton
+            android:id="@+id/p21"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p12"
+            android:layout_toLeftOf="@id/p22" />
+
+        <RadioButton
+            android:id="@+id/p20"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p12"
+            android:layout_toLeftOf="@id/p21" />
+
+        <RadioButton
+            android:id="@+id/p24"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p14"
+            android:layout_toRightOf="@id/p23" />
+
+        <RadioButton
+            android:id="@+id/p25"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p14"
+            android:layout_toRightOf="@id/p24" />
+
+        <RadioButton
+            android:id="@+id/p26"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p14"
+            android:layout_toRightOf="@id/p25" />
+
+        <!-- Row 3 -->
+        <RadioButton
+            android:id="@+id/p33"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p23"
+            android:layout_centerHorizontal="true" />
+
+        <RadioButton
+            android:id="@+id/p32"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p22"
+            android:layout_toLeftOf="@id/p33" />
+
+        <RadioButton
+            android:id="@+id/p31"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p22"
+            android:layout_toLeftOf="@id/p32" />
+
+        <RadioButton
+            android:id="@+id/p30"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p22"
+            android:layout_toLeftOf="@id/p31" />
+
+        <RadioButton
+            android:id="@+id/p34"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p24"
+            android:layout_toRightOf="@id/p33" />
+
+        <RadioButton
+            android:id="@+id/p35"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p24"
+            android:layout_toRightOf="@id/p34" />
+
+        <RadioButton
+            android:id="@+id/p36"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p24"
+            android:layout_toRightOf="@id/p35" />
+
+        <!-- Row 4 -->
+        <RadioButton
+            android:id="@+id/p43"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p33"
+            android:layout_centerHorizontal="true" />
+
+        <RadioButton
+            android:id="@+id/p42"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p32"
+            android:layout_toLeftOf="@id/p43" />
+
+        <RadioButton
+            android:id="@+id/p41"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p32"
+            android:layout_toLeftOf="@id/p42" />
+
+        <RadioButton
+            android:id="@+id/p40"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p32"
+            android:layout_toLeftOf="@id/p41" />
+
+        <RadioButton
+            android:id="@+id/p44"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p34"
+            android:layout_toRightOf="@id/p43" />
+
+        <RadioButton
+            android:id="@+id/p45"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p34"
+            android:layout_toRightOf="@id/p44" />
+
+        <RadioButton
+            android:id="@+id/p46"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p34"
+            android:layout_toRightOf="@id/p45" />
+
+        <!-- Row 5 -->
+        <RadioButton
+            android:id="@+id/p53"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@+id/p43"
+            android:layout_centerHorizontal="true" />
+
+        <RadioButton
+            android:id="@+id/p52"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p42"
+            android:layout_toLeftOf="@id/p53" />
+
+        <RadioButton
+            android:id="@+id/p54"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p44"
+            android:layout_toRightOf="@id/p53" />
+
+        <!-- Row 6 -->
+        <RadioButton
+            android:id="@+id/p63"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@+id/p53"
+            android:layout_centerHorizontal="true" />
+
+        <RadioButton
+            android:id="@+id/p62"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p52"
+            android:layout_toLeftOf="@id/p63" />
+
+        <RadioButton
+            android:id="@+id/p64"
+            style="@style/SCeltaRadioButton"
+            android:layout_below="@id/p54"
+            android:layout_toRightOf="@id/p63" />
+
+    </RelativeLayout>
+</LinearLayout>

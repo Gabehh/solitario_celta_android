@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/prefTituloCategoria1">
+        <EditTextPreference
+            android:key="nombreJugador"
+            android:title="@string/prefTituloNombreJugador"
+            android:summary="@string/prefTextoNombreJugador" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/prefTituloCategoria2">
+        <!-- TODO Añadir otros ajustes -->
+    </PreferenceCategory>
+</PreferenceScreen>
