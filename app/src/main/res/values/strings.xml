@@ -14,6 +14,13 @@
     <string name="txtDialogoFinalAfirmativo">Sí</string>
     <string name="txtDialogoFinalNegativo">No</string>
 
+
+    <!-- Diálogo Reiniciar -->
+    <string name="txtDialogoReiniciarTitulo">Reiniciar la partida</string>
+    <string name="txtDialogoReiniciarPregunta">¿Desea reiniciar la partida?</string>
+    <string name="txtDialogoReiniciarAfirmativo">Sí</string>
+    <string name="txtDialogoReiniciarNegativo">No</string>
+
     <!-- Acerca de -->
     <string name="aboutText">Acerca de</string>
     <string name="aboutMessage">El juego consiste en ir comiendo piezas
