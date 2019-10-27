@@ -2,8 +2,10 @@ package es.upm.miw.SolitarioCelta;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,19 +20,26 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.util.Calendar;
 
 import org.jetbrains.annotations.NotNull;
+
+
 
 public class MainActivity extends AppCompatActivity {
 
 	SCeltaViewModel miJuego;
     public final String LOG_KEY = "MiW";
+    DBManager bd;
     private final int LONGITUD_MENSAJE = 140; // Máxima longitud mensajes
+    private SharedPreferences preferencias;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         miJuego = ViewModelProviders.of(this).get(SCeltaViewModel.class);
+        preferencias = PreferenceManager.getDefaultSharedPreferences(this);
+        bd = new DBManager(this);
         mostrarTablero();
     }
 
@@ -51,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         mostrarTablero();
         if (miJuego.juegoTerminado()) {
-            // TODO guardar puntuación
+            Puntuacion puntuacion = new Puntuacion(GetUser(),GetDate(),this.miJuego.numeroFichas());
+            if(bd.addItem(puntuacion)==-1) this.ShowMessage(getString(R.string.guarduarPuntuacionError));
             new AlertDialogFragment().show(getFragmentManager(), "ALERT_DIALOG");
         }
     }
@@ -112,13 +122,30 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean usedMemorySD() {
+    private boolean UsedMemorySD() {
         return getResources().getBoolean(R.bool.default_prefTarjetaSD);
     }
 
-    private String getNameFile() {
+    private String GetNameFile() {
         return getString(R.string.default_NombreFich);
     }
+
+    private String GetUser() {
+        return preferencias.getString(
+                getString(R.string.key_NameUser),
+                getString(R.string.default_NameUser)
+        );
+    }
+
+    private String GetDate(){
+        Calendar calendar = Calendar.getInstance();
+        return (calendar.get(Calendar.DAY_OF_MONTH)) + "-"
+                + (calendar.get(Calendar.MONTH)+1) + "-"
+                + (calendar.get(Calendar.YEAR)) + " "
+                + (calendar.get(Calendar.HOUR)) + ":"
+                + (calendar.get(Calendar.MINUTE));
+    }
+
     private void ShowMessage(String message){
         Snackbar.make(
                 findViewById(android.R.id.content),
@@ -131,14 +158,14 @@ public class MainActivity extends AppCompatActivity {
         try{
             String gameSerialized = miJuego.serializaTablero();
             FileOutputStream fos;
-            if (!usedMemorySD()) {
+            if (!UsedMemorySD()) {
                 File dir = getFilesDir();
-                File file = new File(dir, getNameFile());
+                File file = new File(dir, GetNameFile());
                 if(file.exists()) file.delete();
-                fos = openFileOutput(getNameFile(), Context.MODE_APPEND);
+                fos = openFileOutput(GetNameFile(), Context.MODE_APPEND);
             } else {
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                    String path = getExternalFilesDir(null) + "/" + getNameFile();
+                    String path = getExternalFilesDir(null) + "/" + GetNameFile();
                     File file = new File(path);
                     if(file.exists()) file.delete();
                     fos = new FileOutputStream(path, true);
@@ -158,12 +185,12 @@ public class MainActivity extends AppCompatActivity {
     public void RestoreGame(){
         try{
             BufferedReader fin;
-            if (!usedMemorySD()) {
+            if (!UsedMemorySD()) {
                 fin = new BufferedReader(
-                        new InputStreamReader(openFileInput(getNameFile())));
+                        new InputStreamReader(openFileInput(GetNameFile())));
             } else {
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                    String path = getExternalFilesDir(null) + "/" + getNameFile();
+                    String path = getExternalFilesDir(null) + "/" + GetNameFile();
                     fin = new BufferedReader(new FileReader(new File(path)));
                 } else {
                     this.ShowMessage(getString(R.string.txtErrorMemExterna));

@@ -2,7 +2,8 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/prefTituloCategoria1">
         <EditTextPreference
-            android:key="nombreJugador"
+            android:key="@string/key_NameUser"
+            android:defaultValue="@string/default_NameUser"
             android:title="@string/prefTituloNombreJugador"
             android:summary="@string/prefTextoNombreJugador" />
     </PreferenceCategory>

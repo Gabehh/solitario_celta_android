@@ -52,5 +52,13 @@
     <!-- Guardar -->
     <string name="guardarPartida">La partida ha sido guardada</string>
 
+    <!-- Guardar BD -->
+    <string name="guarduarPuntuacionError">La puntuación no se ha podido guardar</string>
+
+    <!-- User -->
+    <string name="key_NameUser">pref_NombreJugador</string>
+    <string name="default_NameUser">User</string>
+
+
 
 </resources>
