@@ -43,8 +43,8 @@
 
 
     <!-- Tarjeta SD -->
-    <bool   name="default_prefTarjetaSD">true</bool>
-    <string name="default_NombreFich">fichero_MiWCelta.txt</string>
+    <bool   name="default_prefTarjetaSD">false</bool>
+    <string name="default_NombreFich">gameSolitarioCelta.txt</string>
     <string name="txtErrorMemExterna">
             ERROR: No es posible acceder a la memoria externa
     </string>

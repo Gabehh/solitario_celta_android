@@ -134,13 +134,13 @@ public class MainActivity extends AppCompatActivity {
             if (!usedMemorySD()) {
                 File dir = getFilesDir();
                 File file = new File(dir, getNameFile());
-                file.delete();
+                if(file.exists()) file.delete();
                 fos = openFileOutput(getNameFile(), Context.MODE_APPEND);
             } else {
-                if ( Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                     String path = getExternalFilesDir(null) + "/" + getNameFile();
                     File file = new File(path);
-                    file.delete();
+                    if(file.exists()) file.delete();
                     fos = new FileOutputStream(path, true);
                 } else {
                     this.ShowMessage(getString(R.string.txtErrorMemExterna));
