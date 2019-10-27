@@ -21,6 +21,13 @@
     <string name="txtDialogoReiniciarAfirmativo">Sí</string>
     <string name="txtDialogoReiniciarNegativo">No</string>
 
+
+    <!-- Diálogo Restaurar -->
+    <string name="txtDialogoRestaurarTitulo">Restaurar la partida</string>
+    <string name="txtDialogoRestaurarPregunta">¿Desea restaurar la partida y perder el progreso actual?</string>
+    <string name="txtDialogoRestaurarAfirmativo">Sí</string>
+    <string name="txtDialogoRestaurarNegativo">No</string>
+
     <!-- Acerca de -->
     <string name="aboutText">Acerca de</string>
     <string name="aboutMessage">El juego consiste en ir comiendo piezas
@@ -33,6 +40,17 @@
     <string name="prefTituloNombreJugador">Nombre del jugador</string>
     <string name="prefTextoNombreJugador">Pulse para teclear el nombre del jugador</string>
     <string name="prefTituloCategoria2">Ajustes del juego</string>
+
+
+    <!-- Tarjeta SD -->
+    <bool   name="default_prefTarjetaSD">true</bool>
+    <string name="default_NombreFich">fichero_MiWCelta.txt</string>
+    <string name="txtErrorMemExterna">
+            ERROR: No es posible acceder a la memoria externa
+    </string>
+
+    <!-- Guardar -->
+    <string name="guardarPartida">La partida ha sido guardada</string>
 
 
 </resources>
