@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.SystemClock;
 
 
 public class AlertDialogRestart extends DialogFragment {
@@ -22,6 +23,9 @@ public class AlertDialogRestart extends DialogFragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 main.miJuego.reiniciar();
+                                main.chronometer.stop();
+                                main.chronometer.setBase(SystemClock.elapsedRealtime());
+                                main.isRunning = false;
                                 main.mostrarTablero();
                             }
                         }

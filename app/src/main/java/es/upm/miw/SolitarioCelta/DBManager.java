@@ -24,7 +24,8 @@ public class DBManager extends SQLiteOpenHelper {
                 + JuegoContract.JuegoEntry.COL_NAME_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + JuegoContract.JuegoEntry.COL_NAME_NOMBRE      + " TEXT, "
                 + JuegoContract.JuegoEntry.COL_FICHAS + " INTEGER,"
-                + JuegoContract.JuegoEntry.COL_DATE     + " TEXT)";
+                + JuegoContract.JuegoEntry.COL_DATE     + " TEXT,"
+                + JuegoContract.JuegoEntry.COL_CHRON + " TEXT)";
         db.execSQL(query);
     }
 
@@ -41,15 +42,16 @@ public class DBManager extends SQLiteOpenHelper {
         cv.put(JuegoContract.JuegoEntry.COL_NAME_NOMBRE, puntuacion.getName());
         cv.put(JuegoContract.JuegoEntry.COL_FICHAS, puntuacion.getFichas());
         cv.put(JuegoContract.JuegoEntry.COL_DATE,puntuacion.getDate());
+        cv.put(JuegoContract.JuegoEntry.COL_CHRON,puntuacion.getChronometer());
         return db.insert(JuegoContract.JuegoEntry.TABLE_NAME, null, cv);
     }
 
 
     public ArrayList<Puntuacion> GetAll() {
-        String consultaSQL = "SELECT * FROM " + JuegoContract.JuegoEntry.TABLE_NAME + " ORDER BY " + JuegoContract.JuegoEntry.COL_FICHAS;
+        String query = "SELECT * FROM " + JuegoContract.JuegoEntry.TABLE_NAME + " ORDER BY " + JuegoContract.JuegoEntry.COL_FICHAS;
         ArrayList<Puntuacion> listScore = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(consultaSQL, null);
+        Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
@@ -58,6 +60,7 @@ public class DBManager extends SQLiteOpenHelper {
                 score.setName(cursor.getString(cursor.getColumnIndex(JuegoContract.JuegoEntry.COL_NAME_NOMBRE)));
                 score.setFichas(cursor.getInt(cursor.getColumnIndex(JuegoContract.JuegoEntry.COL_FICHAS)));
                 score.setDate(cursor.getString(cursor.getColumnIndex(JuegoContract.JuegoEntry.COL_DATE)));
+                score.setChronometer(cursor.getString(cursor.getColumnIndex(JuegoContract.JuegoEntry.COL_CHRON)));
                 listScore.add(score);
                 cursor.moveToNext();
             }

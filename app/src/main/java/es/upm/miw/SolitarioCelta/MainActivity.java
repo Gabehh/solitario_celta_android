@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.RadioButton;
 import android.content.Context;
 import android.widget.TextView;
+import android.os.SystemClock;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -33,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
     public final String LOG_KEY = "MiW";
     private final int LONGITUD_MENSAJE = 140; // Máxima longitud mensajes
     private SharedPreferences preferencias;
+    public Chronometer chronometer;
     private DBManager bd;
+    public Boolean isRunning = false;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         preferencias = PreferenceManager.getDefaultSharedPreferences(this);
         bd = new DBManager(this);
         mostrarTablero();
+        chronometer = findViewById(R.id.chronometer);
     }
 
     /**
@@ -51,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
      * @param v Vista de la ficha pulsada
      */
     public void fichaPulsada(@NotNull View v) {
+        if(!isRunning) {
+            chronometer.setBase(SystemClock.uptimeMillis());
+            chronometer.start();
+            isRunning = true;
+        }
         String resourceName = getResources().getResourceEntryName(v.getId());
         int i = resourceName.charAt(1) - '0';   // fila
         int j = resourceName.charAt(2) - '0';   // columna
@@ -61,8 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
         mostrarTablero();
         if (miJuego.juegoTerminado()) {
-            Puntuacion puntuacion = new Puntuacion(GetUser(),GetDate(),this.miJuego.numeroFichas());
+            chronometer.stop();
+            isRunning = false;
+            Puntuacion puntuacion = new Puntuacion(GetUser(),GetDate(),this.miJuego.numeroFichas(),GetTime());
             if(bd.AddItem(puntuacion)==-1) this.ShowMessage(getString(R.string.guarduarPuntuacionError));
+            chronometer.setBase(SystemClock.elapsedRealtime());
             new AlertDialogFragment().show(getFragmentManager(), "ALERT_DIALOG");
         }
     }
@@ -140,6 +153,14 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    private String GetTime(){
+        long time = SystemClock.elapsedRealtime() - chronometer.getBase();
+        int h = (int) (time / 3600000);
+        int m = (int) (time - h * 3600000) / 60000;
+        int s= (int)(time - h*3600000- m*60000)/1000 ;
+        return h+ ":"+m+":"+s;
+    }
+
     private String GetDate(){
         Calendar calendar = Calendar.getInstance();
         return (calendar.get(Calendar.DAY_OF_MONTH)) + "-"
@@ -178,6 +199,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             fos.write(gameSerialized.getBytes());
+            fos.write('\n');
+            fos.write(String.valueOf(chronometer.getBase()- SystemClock.elapsedRealtime()).getBytes());
             fos.close();
             this.ShowMessage(getString(R.string.guardarPartida));
         }catch (Exception ex) {
@@ -214,7 +237,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             String line = fin.readLine();
+            String time = fin.readLine();
             fin.close();
+            isRunning = true;
+            chronometer.start();
+            chronometer.setBase(SystemClock.elapsedRealtime() +Long.parseLong(time));
             this.miJuego.deserializaTablero(line);
             this.mostrarTablero();
         }catch (Exception ex) {

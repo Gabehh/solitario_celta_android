@@ -13,23 +13,30 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="Nombre" />
+            android:text="@string/gridName" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="Fecha y Hora" />
+            android:text="@string/gridHour" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="Fichas" />
+            android:text="@string/gridFichas" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/gridTime" />
+
+    </LinearLayout>k
 
     <ListView
         android:id="@+id/lvListScore"

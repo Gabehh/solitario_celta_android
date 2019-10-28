@@ -38,8 +38,10 @@ public class PuntuacionAdapter extends ArrayAdapter {
             tvNombre.setText(puntuacion.getName());
             TextView tvTamanio = convertView.findViewById(R.id.tvDate);
             tvTamanio.setText(String.valueOf(puntuacion.getDate()));
-            TextView tvPrecio = convertView.findViewById(R.id.tvFichas);
-            tvPrecio.setText(String.valueOf(puntuacion.getFichas()));
+            TextView tvtFicha = convertView.findViewById(R.id.tvFichas);
+            tvtFicha.setText("  " +String.valueOf(puntuacion.getFichas()));
+            TextView tvTiempo = convertView.findViewById(R.id.tvTiempo);
+            tvTiempo.setText(String.valueOf(puntuacion.getChronometer()));
         }
         return convertView;
     }

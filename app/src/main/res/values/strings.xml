@@ -76,6 +76,11 @@
     <!--Contador-->
     <string name="nameContador">Número de fichas:</string>
 
+    <!--Grid-->
+    <string name="gridName">Nombre</string>
+    <string name="gridHour">Fecha y Hora</string>
+    <string name="gridFichas">Fichas</string>
+    <string name="gridTime">Tiempo</string>
 
 
 </resources>
