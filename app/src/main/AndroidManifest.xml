@@ -37,6 +37,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".History"
+            android:theme="@style/AppTheme"
+            android:label="@string/prefTituloRanking" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         </application>
         <uses-permission
             android:name="android.permission.WRITE_EXTERNAL_STORAGE"

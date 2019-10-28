@@ -2,9 +2,13 @@ package es.upm.miw.SolitarioCelta;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
+
+import java.util.ArrayList;
 
 public class DBManager extends SQLiteOpenHelper {
     private static final String DB_NAME = JuegoContract.JuegoEntry.TABLE_NAME + ".db";
@@ -31,13 +35,46 @@ public class DBManager extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long addItem(Puntuacion puntuacion){
+    public long AddItem(Puntuacion puntuacion){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(JuegoContract.JuegoEntry.COL_NAME_NOMBRE, puntuacion.getName());
         cv.put(JuegoContract.JuegoEntry.COL_FICHAS, puntuacion.getFichas());
         cv.put(JuegoContract.JuegoEntry.COL_DATE,puntuacion.getDate());
         return db.insert(JuegoContract.JuegoEntry.TABLE_NAME, null, cv);
+    }
+
+
+    public ArrayList<Puntuacion> GetAll() {
+        String consultaSQL = "SELECT * FROM " + JuegoContract.JuegoEntry.TABLE_NAME + " ORDER BY " + JuegoContract.JuegoEntry.COL_FICHAS;
+        ArrayList<Puntuacion> listScore = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(consultaSQL, null);
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Puntuacion score = new Puntuacion();
+                score.setid(cursor.getInt(cursor.getColumnIndex(JuegoContract.JuegoEntry.COL_NAME_ID)));
+                score.setName(cursor.getString(cursor.getColumnIndex(JuegoContract.JuegoEntry.COL_NAME_NOMBRE)));
+                score.setFichas(cursor.getInt(cursor.getColumnIndex(JuegoContract.JuegoEntry.COL_FICHAS)));
+                score.setDate(cursor.getString(cursor.getColumnIndex(JuegoContract.JuegoEntry.COL_DATE)));
+                listScore.add(score);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        db.close();
+        return listScore;
+    }
+
+    public void Delete() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+JuegoContract.JuegoEntry.TABLE_NAME);
+    }
+
+    public long Count() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return DatabaseUtils.queryNumEntries(db, JuegoContract.JuegoEntry.TABLE_NAME);
     }
 
 

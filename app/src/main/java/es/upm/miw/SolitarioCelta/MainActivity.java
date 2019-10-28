@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
 	SCeltaViewModel miJuego;
     public final String LOG_KEY = "MiW";
-    DBManager bd;
     private final int LONGITUD_MENSAJE = 140; // Máxima longitud mensajes
     private SharedPreferences preferencias;
+    private DBManager bd;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         mostrarTablero();
         if (miJuego.juegoTerminado()) {
             Puntuacion puntuacion = new Puntuacion(GetUser(),GetDate(),this.miJuego.numeroFichas());
-            if(bd.addItem(puntuacion)==-1) this.ShowMessage(getString(R.string.guarduarPuntuacionError));
+            if(bd.AddItem(puntuacion)==-1) this.ShowMessage(getString(R.string.guarduarPuntuacionError));
             new AlertDialogFragment().show(getFragmentManager(), "ALERT_DIALOG");
         }
     }
@@ -112,8 +112,9 @@ public class MainActivity extends AppCompatActivity {
                 else
                     new AlertDialogRestore().show(getFragmentManager(), "ALERT_DIALOG");
                 return true;
-
-
+            case R.id.opcMejoresResultados:
+                startActivity(new Intent(this, History.class));
+                return true;
             // TODO!!! resto opciones
 
             default:

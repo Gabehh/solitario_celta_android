@@ -28,6 +28,13 @@
     <string name="txtDialogoRestaurarAfirmativo">Sí</string>
     <string name="txtDialogoRestaurarNegativo">No</string>
 
+    <!-- Diálogo Borrar -->
+    <string name="txtDialogoBorrarTitulo">Borrar los resultados</string>
+    <string name="txtDialogoBorrarPregunta">¿Desea borrar los resultados ?</string>
+    <string name="txtDialogoBorrarAfirmativo">Sí</string>
+    <string name="txtDialogoBorrarNegativo">No</string>
+    <string name="txtMensajeoBorrarError">No existen registros para borrar</string>
+
     <!-- Acerca de -->
     <string name="aboutText">Acerca de</string>
     <string name="aboutMessage">El juego consiste en ir comiendo piezas
@@ -58,6 +65,13 @@
     <!-- User -->
     <string name="key_NameUser">pref_NombreJugador</string>
     <string name="default_NameUser">User</string>
+
+    <!-- Ranking -->
+    <string name="prefTituloRanking">Ranking de Puntuaciones</string>
+    <string name="key_List">pref_Score</string>
+
+    <!-- Botones -->
+    <string name="prefButtonDelete">Borrar Registros</string>
 
 
 
