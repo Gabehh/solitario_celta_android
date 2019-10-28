@@ -56,9 +56,9 @@
             ERROR: No es posible acceder a la memoria externa
     </string>
 
-    <!-- Guardar -->
+    <!-- Guardar y Recuperar -->
     <string name="guardarPartida">La partida ha sido guardada</string>
-
+    <string name="errorRestore">No existen partidas guardadas</string>
     <!-- Guardar BD -->
     <string name="guarduarPuntuacionError">La puntuación no se ha podido guardar</string>
 
@@ -72,6 +72,9 @@
 
     <!-- Botones -->
     <string name="prefButtonDelete">Borrar Registros</string>
+
+    <!--Contador-->
+    <string name="nameContador">Número de fichas:</string>
 
 
 

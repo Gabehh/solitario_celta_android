@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.content.Context;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -84,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
                     button.setChecked(miJuego.obtenerFicha(i, j) == JuegoCelta.FICHA);
                 }
             }
+
+        TextView textCount = findViewById(R.id.countFichas) ;
+        textCount.setText(String.valueOf(this.miJuego.numeroFichas()));
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -115,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.opcMejoresResultados:
                 startActivity(new Intent(this, History.class));
                 return true;
-            // TODO!!! resto opciones
-
             default:
                 this.ShowMessage(getString(R.string.txtSinImplementar));
         }
@@ -143,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         return (calendar.get(Calendar.DAY_OF_MONTH)) + "-"
                 + (calendar.get(Calendar.MONTH)+1) + "-"
                 + (calendar.get(Calendar.YEAR)) + " "
-                + (calendar.get(Calendar.HOUR)) + ":"
+                + (calendar.get(Calendar.HOUR_OF_DAY)) + ":"
                 + (calendar.get(Calendar.MINUTE));
     }
 
@@ -187,12 +189,25 @@ public class MainActivity extends AppCompatActivity {
         try{
             BufferedReader fin;
             if (!UsedMemorySD()) {
-                fin = new BufferedReader(
+                File dir = getFilesDir();
+                File file = new File(dir, GetNameFile());
+                if(file.exists()){
+                    fin = new BufferedReader(
                         new InputStreamReader(openFileInput(GetNameFile())));
+                }
+                else{
+                    throw new Exception(getString(R.string.txtErrorMemExterna));
+                }
             } else {
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                     String path = getExternalFilesDir(null) + "/" + GetNameFile();
-                    fin = new BufferedReader(new FileReader(new File(path)));
+                    File file = new File(path);
+                    if(file.exists()){
+                        fin = new BufferedReader(new FileReader(new File(path)));
+                    }
+                    else{
+                        throw new Exception(getString(R.string.errorRestore));
+                    }
                 } else {
                     this.ShowMessage(getString(R.string.txtErrorMemExterna));
                     return;
