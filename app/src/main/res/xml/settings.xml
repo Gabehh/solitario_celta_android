@@ -9,6 +9,18 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/prefTituloCategoria2">
-        <!-- TODO Añadir otros ajustes -->
+        <SwitchPreference
+            android:key="@string/key_TarjetaSD"
+            android:title="@string/txtPrefTarjetaSD"
+            android:defaultValue="@bool/default_prefTarjetaSD"
+            android:summary="@string/txtPrefTarjetaSDExplicación" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/prefTituloCategoria3">
+        <SwitchPreference
+            android:key="@string/key_Ranking"
+            android:title="@string/prefTituloRanking"
+            android:defaultValue="@bool/default_prefRanking"
+            android:summary="@string/txtPrefRankingDescription" />
     </PreferenceCategory>
 </PreferenceScreen>

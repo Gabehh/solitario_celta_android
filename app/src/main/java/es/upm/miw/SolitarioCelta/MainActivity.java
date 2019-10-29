@@ -52,12 +52,12 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Se ejecuta al pulsar una ficha
      * Las coordenadas (i, j) se obtienen a partir del nombre del recurso, ya que el botón
-     * tiene un identificador en formato pXY, donde X es la fila e Y la columna
+     * tiene un identificador en formato pXY, donde X es la fila euptimeMillis Y la columna
      * @param v Vista de la ficha pulsada
      */
     public void fichaPulsada(@NotNull View v) {
         if(!isRunning) {
-            chronometer.setBase(SystemClock.uptimeMillis());
+           // chronometer.setBase(SystemClock.uptimeMillis());
             chronometer.start();
             isRunning = true;
         }
@@ -139,7 +139,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean UsedMemorySD() {
-        return getResources().getBoolean(R.bool.default_prefTarjetaSD);
+        return preferencias.getBoolean(
+                getString(R.string.key_TarjetaSD),
+                getResources().getBoolean(R.bool.default_prefTarjetaSD));
     }
 
     private String GetNameFile() {
@@ -219,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                         new InputStreamReader(openFileInput(GetNameFile())));
                 }
                 else{
-                    throw new Exception(getString(R.string.txtErrorMemExterna));
+                    throw new Exception(getString(R.string.errorRestore));
                 }
             } else {
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {

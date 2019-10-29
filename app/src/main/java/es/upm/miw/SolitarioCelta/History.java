@@ -1,6 +1,8 @@
 package es.upm.miw.SolitarioCelta;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,10 +14,12 @@ public class History extends AppCompatActivity {
 
     private DBManager bd;
     private ArrayList<Puntuacion> list;
+    private SharedPreferences preferencias;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.score);
+        preferencias = PreferenceManager.getDefaultSharedPreferences(this);
         bd = new DBManager(this);
         this.GetRanking();
     }
@@ -34,7 +38,7 @@ public class History extends AppCompatActivity {
     }
 
     private void GetRanking(){
-        list = bd.GetAll();
+        list = bd.GetAll(!RankFlag());
         ListView listScore = findViewById(R.id.lvListScore);
         listScore.setAdapter(new PuntuacionAdapter(
                 this,
@@ -49,6 +53,12 @@ public class History extends AppCompatActivity {
                 message,
                 Snackbar.LENGTH_LONG
         ).show();
+    }
+
+    private boolean RankFlag() {
+        return preferencias.getBoolean(
+                getString(R.string.key_Ranking),
+                getResources().getBoolean(R.bool.default_prefRanking));
     }
 }
 

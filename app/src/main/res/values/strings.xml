@@ -49,11 +49,27 @@
     <string name="prefTituloCategoria2">Ajustes del juego</string>
 
 
+    <!-- Ranking -->
+    <string name="prefTituloCategoria3">Ajustes del ranking</string>
+    <string name="key_Ranking">ranking</string>
+    <bool   name="default_prefRanking">false</bool>
+    <string name="txtPrefRanking">Filtrar por usuario</string>
+    <string name="txtPrefRankingDescription">
+                    Si se activa esta opción se filtrará el top de resultados por el nombre de los usuarios.
+    </string>
+
+
     <!-- Tarjeta SD -->
+    <string name="key_TarjetaSD">utilizarTarjetaSD</string>
     <bool   name="default_prefTarjetaSD">false</bool>
     <string name="default_NombreFich">gameSolitarioCelta.txt</string>
+    <string name="txtPrefTarjetaSD">Almacenamiento en tarjeta SD</string>
     <string name="txtErrorMemExterna">
             ERROR: No es posible acceder a la memoria externa
+    </string>
+    <string name="txtPrefTarjetaSDExplicación">
+                    Si se activa esta opción se almacenará la información
+                    en la tarjeta SD (si está disponible)
     </string>
 
     <!-- Guardar y Recuperar -->

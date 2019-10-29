@@ -47,8 +47,13 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<Puntuacion> GetAll() {
-        String query = "SELECT * FROM " + JuegoContract.JuegoEntry.TABLE_NAME + " ORDER BY " + JuegoContract.JuegoEntry.COL_FICHAS;
+    public ArrayList<Puntuacion> GetAll(Boolean orderByFichas) {
+        String query = "SELECT * FROM " + JuegoContract.JuegoEntry.TABLE_NAME;
+        if(orderByFichas)
+            query = query + " ORDER BY " + JuegoContract.JuegoEntry.COL_FICHAS;
+        else
+            query = query + " ORDER BY " + JuegoContract.JuegoEntry.COL_NAME_NOMBRE;
+
         ArrayList<Puntuacion> listScore = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
